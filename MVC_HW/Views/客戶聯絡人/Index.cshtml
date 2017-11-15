@@ -1,0 +1,85 @@
+﻿@model IEnumerable<MVC_HW.Models.客戶聯絡人>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>客戶聯絡人</h2>
+
+<p>
+    @Html.ActionLink("新增", "Create")
+</p>
+
+<form action="/客戶聯絡人/Index" method="get">
+    Search(職稱)：
+    <input id="keyword1" type="search" name="keyword1" />
+    Search(姓名)：
+    <input id="keyword2" type="search" name="keyword2" />
+    <input id="Submit1" type="submit" value="搜尋" />
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.職稱)*@
+            @Html.ActionLink("職稱", "Index", new { keyword1 = ViewBag.Search1, keyword2 = ViewBag.Search2, sort_name = "職稱", sort = ViewBag.Sort })
+            <form method="get">
+                <div class="form-inline">
+                    <input type="search" name="SearchId" placeholder="請輸入關鍵字" />
+                    @*<input id="Submit2" type="submit" value="搜尋" />*@
+                </div>
+            </form>
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.姓名)*@
+            @Html.ActionLink("姓名", "Index", new { keyword1 = ViewBag.Search1, keyword2 = ViewBag.Search2, sort_name = "姓名", sort = ViewBag.Sort })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Email)*@
+            @Html.ActionLink("Email", "Index", new { keyword1 = ViewBag.Search1, keyword2 = ViewBag.Search2, sort_name = "Email", sort = ViewBag.Sort })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.手機)*@
+            @Html.ActionLink("手機", "Index", new { keyword1 = ViewBag.Search1, keyword2 = ViewBag.Search2, sort_name = "手機", sort = ViewBag.Sort })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.電話)*@
+            @Html.ActionLink("電話", "Index", new { keyword1 = ViewBag.Search1, keyword2 = ViewBag.Search2, sort_name = "電話", sort = ViewBag.Sort })
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.客戶資料.客戶名稱)*@
+            @Html.ActionLink("客戶名稱", "Index", new { keyword1 = ViewBag.Search1, keyword2 = ViewBag.Search2, sort_name = "客戶名稱", sort = ViewBag.Sort })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.職稱)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.姓名)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.手機)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.電話)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.客戶資料.客戶名稱)
+            </td>
+            <td>
+                @Html.ActionLink("修改", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("明細", "Details", new { id = item.Id }) |
+                @Html.ActionLink("刪除", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
